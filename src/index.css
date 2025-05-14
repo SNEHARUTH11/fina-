@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #00d09c;
+  --color-text: #44475b;
+  --color-background: #ffffff;
+}
+
+.dark {
+  --color-primary: #00d09c;
+  --color-text: #e5e7eb;
+  --color-background: #1a1b1e;
+}
+
+@layer base {
+  body {
+    @apply bg-groww-background-light dark:bg-groww-background-dark;
+    @apply text-groww-gray dark:text-groww-light;
+    transition: background-color 0.3s ease-in-out;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-groww-card-light dark:bg-groww-card-dark;
+    @apply border border-groww-border-light dark:border-groww-border-dark;
+    @apply shadow-groww hover:shadow-groww-lg;
+    @apply transform transition-all duration-300;
+    @apply hover:-translate-y-1;
+    @apply relative;
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    @apply card;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-0.5rem) rotateX(2deg) rotateY(2deg);
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .button-3d {
+    @apply relative;
+    @apply bg-groww-blue text-white;
+    @apply shadow-groww-3d;
+    @apply transform transition-transform duration-200;
+    @apply hover:-translate-y-0.5;
+    @apply active:translate-y-0;
+    @apply active:shadow-groww;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 dark:bg-black/10;
+    @apply backdrop-blur-lg;
+    @apply border border-white/20 dark:border-white/10;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-1 hover:shadow-groww-lg;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.market-card {
+  @apply card-3d;
+  @apply p-6;
+  @apply hover:shadow-xl;
+  @apply transition-all duration-300;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+.chart-container {
+  @apply card-3d;
+  @apply overflow-hidden;
+  @apply border border-groww-border-light dark:border-groww-border-dark;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card {
+  @apply glass-effect;
+  @apply rounded-xl;
+  @apply p-4;
+  @apply hover-lift;
+}
+
+.price-tag {
+  @apply absolute;
+  @apply top-2 right-2;
+  @apply px-3 py-1;
+  @apply rounded-full;
+  @apply text-sm font-bold;
+  @apply glass-effect;
+  @apply shadow-groww;
+}
